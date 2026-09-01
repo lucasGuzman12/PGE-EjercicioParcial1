@@ -1,24 +1,13 @@
 #include "Aplicacion.h"
-#include "RenderizadorConsola.h"
 
-#ifdef _WIN32
-#include <windows.h>
-#endif
+// Punto de entrada usado cuando el proyecto se compila como aplicacion Windows.
+int WINAPI WinMain(HINSTANCE instancia, HINSTANCE, LPSTR, int mostrar) {
+    Aplicacion app(instancia);
+    return app.ejecutar(mostrar);
+}
 
+// Punto de entrada alternativo para compilar el mismo prototipo como consola.
 int main() {
-#ifdef _WIN32
-    SetConsoleCP(CP_UTF8);
-    SetConsoleOutputCP(CP_UTF8);
-#endif
-
-    RenderizadorConsola renderizador;
-
-    // La función lambda se encarga del pintado. Más adelante se reemplaza por el
-    // código que dibuje la interfaz gráfica definitiva.
-    Aplicacion aplicacion([&renderizador](const EstadoVistaPagina& estado) {
-        renderizador.pintar(estado);
-    });
-
-    aplicacion.ejecutar();
-    return 0;
+    Aplicacion app(GetModuleHandleW(NULL));
+    return app.ejecutar(SW_SHOWDEFAULT);
 }
