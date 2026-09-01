@@ -7,7 +7,8 @@
 
 using namespace std;
 
-// Representa un color RGB y lo convierte al formato COLORREF que usa Win32.
+// APOYO A LAS FUNCIONES DE CONVERSION:
+// transforma un color RGB del prototipo al formato COLORREF que usa Win32.
 class Color {
 public:
     int r;
@@ -22,8 +23,9 @@ public:
     }
 };
 
-// Convierte coordenadas del diseno base a las coordenadas reales de la ventana.
-// Mantiene la proporcion del prototipo para que la interfaz no se deforme.
+// APOYO A LAS FUNCIONES DE CONVERSION:
+// convierte coordenadas del diseno base a coordenadas reales de la ventana y
+// mantiene la proporcion del prototipo para que la interfaz no se deforme.
 class EscalaVentana {
 public:
     int ancho;

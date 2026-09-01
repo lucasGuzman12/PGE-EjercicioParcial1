@@ -32,7 +32,12 @@ public:
         MSG mensaje;
         ZeroMemory(&mensaje, sizeof(mensaje));
 
-        // Bucle de eventos: mantiene viva la aplicacion hasta recibir WM_QUIT.
+        // =====================================================================
+        // PUNTO DE LA CONSIGNA: BUCLE DESPACHADOR DE EVENTOS
+        // GetMessage obtiene cada evento; TranslateMessage lo interpreta y
+        // DispatchMessage lo envia al callback procedimientoVentana.
+        // El bucle mantiene activa la aplicacion hasta recibir WM_QUIT.
+        // =====================================================================
         while (GetMessage(&mensaje, NULL, 0, 0)) {
             TranslateMessage(&mensaje);
             DispatchMessage(&mensaje);
@@ -53,13 +58,17 @@ public:
                 InvalidateRect(hwnd, NULL, TRUE);
                 return 0;
 
+            // =================================================================
+            // PUNTO DE LA CONSIGNA: EVENTOS PAINT
+            // WM_PAINT solicita repintar la ventana. dibujar() realiza el
+            // proceso dentro de BeginPaint/EndPaint usando el estado actual.
+            // =================================================================
             case WM_PAINT:
-                // Evento Paint: redibuja la interfaz segun el estado actual.
                 dibujar(hwnd);
                 return 0;
 
             case WM_DRAWITEM:
-                // Paint del boton owner-draw.
+                // Evento Paint adicional para dibujar manualmente el boton.
                 if (wParam == ID_BOTON_FILTROS) {
                     botonFiltros.dibujar((const DRAWITEMSTRUCT*)lParam);
                     return TRUE;
@@ -147,7 +156,12 @@ private:
         EndPaint(hwnd, &ps);
     }
 
-    // Funciones de conversion: adaptan coordenadas reales al sistema del diseno.
+    // ========================================================================
+    // PUNTO DE LA CONSIGNA: FUNCIONES DE CONVERSION
+    // Estas funciones convierten las coordenadas reales recibidas desde Win32
+    // al sistema de coordenadas fijo del diseno. Asi, los clics coinciden con
+    // los elementos visuales aunque cambie el tamano de la ventana.
+    // ========================================================================
     int convertirX(LPARAM lParam, HWND hwnd) const {
         EscalaVentana escala = EscalaVentana::desdeVentana(hwnd);
         if (escala.ancho == 0) {
@@ -168,7 +182,13 @@ private:
         return (mouseY * DISENO_ALTO) / escala.alto;
     }
 
-    // Callback estatico de Win32. Recupera la instancia y delega el manejo real.
+    // ========================================================================
+    // PUNTO DE LA CONSIGNA: CALLBACK
+    // Win32 invoca automaticamente esta funcion cada vez que ocurre un evento.
+    // El callback recupera la instancia de Aplicacion y delega el mensaje en
+    // manejarMensaje(), donde se atienden clics, Paint y cierre de la ventana.
+    // Se registra anteriormente mediante wc.lpfnWndProc.
+    // ========================================================================
     static LRESULT CALLBACK procedimientoVentana(HWND hwnd, UINT mensaje, WPARAM wParam, LPARAM lParam) {
         Aplicacion* app = NULL;
 
