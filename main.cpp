@@ -1,15 +1,24 @@
-#include "Application.h"
-#include "ConsoleRenderer.h"
+#include "Aplicacion.h"
+#include "RenderizadorConsola.h"
+
+#ifdef _WIN32
+#include <windows.h>
+#endif
 
 int main() {
-    ConsoleRenderer renderer;
+#ifdef _WIN32
+    SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
+#endif
 
-    // La lambda es el callback de pintado. Mas adelante se reemplaza por el
-    // codigo que dibuje la interfaz grafica definitiva.
-    Application application([&renderer](const PageViewState& state) {
-        renderer.paint(state);
+    RenderizadorConsola renderizador;
+
+    // La función lambda se encarga del pintado. Más adelante se reemplaza por el
+    // código que dibuje la interfaz gráfica definitiva.
+    Aplicacion aplicacion([&renderizador](const EstadoVistaPagina& estado) {
+        renderizador.pintar(estado);
     });
 
-    application.run();
+    aplicacion.ejecutar();
     return 0;
 }

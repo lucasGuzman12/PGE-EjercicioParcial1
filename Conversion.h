@@ -3,18 +3,18 @@
 #include <cstddef>
 #include <string>
 
-enum class ConsoleCommand {
-    OpenFilters,
-    CloseFilters,
-    Repaint,
-    Quit,
-    Invalid
+enum class ComandoConsola {
+    AbrirFiltros,
+    CerrarFiltros,
+    Repintar,
+    Salir,
+    Invalido
 };
 
-// Funciones que convierten datos de entrada o del modelo a tipos utiles.
+// Funciones que convierten datos de entrada o del modelo a tipos útiles.
 namespace Conversion {
-std::string normalize(std::string text);
-ConsoleCommand textToCommand(const std::string& text);
-std::string popupStatusToText(bool isOpen);
-std::string optionCountToText(std::size_t count);
+std::string normalizar(std::string texto);
+ComandoConsola textoAComando(const std::string& texto);
+std::string estadoVentanaATexto(bool estaAbierta);
+std::string cantidadOpcionesATexto(std::size_t cantidad);
 }  // namespace Conversion

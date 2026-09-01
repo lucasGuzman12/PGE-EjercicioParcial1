@@ -1,11 +1,11 @@
-# Visual Studio: configuracion local del usuario
+# Visual Studio: configuración local del usuario
 .vs/
 *.suo
 *.user
 *.userosscache
 *.sln.docstates
 
-# Directorios de compilacion
+# Directorios de compilación
 [Dd]ebug/
 [Rr]elease/
 x64/
@@ -31,7 +31,7 @@ Ejercici.ea8f215a/
 *.lastbuildstate
 *.ipch
 
-# Resultados de pruebas y diagnostico
+# Resultados de pruebas y diagnóstico
 TestResults/
 *.log
 

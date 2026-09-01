@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Application.cpp">
+    <ClCompile Include="Aplicacion.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="ConsoleRenderer.cpp">
+    <ClCompile Include="RenderizadorConsola.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="Conversion.cpp">
@@ -29,16 +29,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Application.h">
+    <ClInclude Include="Aplicacion.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="ConsoleRenderer.h">
+    <ClInclude Include="RenderizadorConsola.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Conversion.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="UiModels.h">
+    <ClInclude Include="ModelosInterfaz.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

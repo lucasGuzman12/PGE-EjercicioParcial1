@@ -4,48 +4,48 @@
 #include <cctype>
 
 namespace Conversion {
-std::string normalize(std::string text) {
-    const auto first = std::find_if_not(text.begin(), text.end(), [](unsigned char character) {
-        return std::isspace(character) != 0;
+std::string normalizar(std::string texto) {
+    const auto primero = std::find_if_not(texto.begin(), texto.end(), [](unsigned char caracter) {
+        return std::isspace(caracter) != 0;
     });
-    const auto last = std::find_if_not(text.rbegin(), text.rend(), [](unsigned char character) {
-                          return std::isspace(character) != 0;
-                      }).base();
+    const auto ultimo = std::find_if_not(texto.rbegin(), texto.rend(), [](unsigned char caracter) {
+                            return std::isspace(caracter) != 0;
+                        }).base();
 
-    if (first >= last) {
+    if (primero >= ultimo) {
         return {};
     }
 
-    std::string normalized(first, last);
-    std::transform(normalized.begin(), normalized.end(), normalized.begin(), [](unsigned char character) {
-        return static_cast<char>(std::tolower(character));
+    std::string normalizado(primero, ultimo);
+    std::transform(normalizado.begin(), normalizado.end(), normalizado.begin(), [](unsigned char caracter) {
+        return static_cast<char>(std::tolower(caracter));
     });
-    return normalized;
+    return normalizado;
 }
 
-ConsoleCommand textToCommand(const std::string& text) {
-    const std::string command = normalize(text);
+ComandoConsola textoAComando(const std::string& texto) {
+    const std::string comando = normalizar(texto);
 
-    if (command == "f" || command == "filtros") {
-        return ConsoleCommand::OpenFilters;
+    if (comando == "f" || comando == "filtros") {
+        return ComandoConsola::AbrirFiltros;
     }
-    if (command == "c" || command == "cerrar") {
-        return ConsoleCommand::CloseFilters;
+    if (comando == "c" || comando == "cerrar") {
+        return ComandoConsola::CerrarFiltros;
     }
-    if (command == "r" || command == "repintar") {
-        return ConsoleCommand::Repaint;
+    if (comando == "r" || comando == "repintar") {
+        return ComandoConsola::Repintar;
     }
-    if (command == "q" || command == "salir") {
-        return ConsoleCommand::Quit;
+    if (comando == "s" || comando == "salir") {
+        return ComandoConsola::Salir;
     }
-    return ConsoleCommand::Invalid;
+    return ComandoConsola::Invalido;
 }
 
-std::string popupStatusToText(bool isOpen) {
-    return isOpen ? "abierta" : "cerrada";
+std::string estadoVentanaATexto(bool estaAbierta) {
+    return estaAbierta ? "abierta" : "cerrada";
 }
 
-std::string optionCountToText(std::size_t count) {
-    return std::to_string(count) + (count == 1 ? " opcion" : " opciones");
+std::string cantidadOpcionesATexto(std::size_t cantidad) {
+    return std::to_string(cantidad) + (cantidad == 1 ? " opción" : " opciones");
 }
 }  // namespace Conversion
