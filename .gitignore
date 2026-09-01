@@ -1,0 +1,41 @@
+# Visual Studio: configuracion local del usuario
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Directorios de compilacion
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+Win32/
+build/
+out/
+
+# Directorio intermedio generado por este proyecto
+Ejercici.ea8f215a/
+
+# Binarios y archivos intermedios de C/C++
+*.exe
+*.dll
+*.lib
+*.exp
+*.obj
+*.pch
+*.pdb
+*.idb
+*.ilk
+*.tlog
+*.lastbuildstate
+*.ipch
+
+# Resultados de pruebas y diagnostico
+TestResults/
+*.log
+
+# Archivos temporales del sistema operativo
+Thumbs.db
+Desktop.ini
+.DS_Store
