@@ -228,7 +228,7 @@ private:
     int alto;
 
 public:
-    BotonFiltros() : handle(NULL), x(238), y(579), ancho(158), alto(42) {}
+    BotonFiltros() : handle(NULL), x(238), y(575), ancho(190), alto(50) {}
 
     void crear(HWND padre, HINSTANCE instancia) {
         handle = CreateWindowW(
@@ -263,18 +263,79 @@ public:
         RECT area = item->rcItem;
         int anchoActual = area.right - area.left;
         int altoActual = area.bottom - area.top;
+
+        if (anchoActual <= 8 || altoActual <= 8) {
+            return;
+        }
+
         bool presionado = (item->itemState & ODS_SELECTED) != 0;
-        Color fondoBoton = presionado ? Color(239, 0, 0) : Color(249, 249, 255);
-        Color textoBoton = presionado ? Color(255, 255, 255) : Color(0, 14, 28);
+        bool enfocado = (item->itemState & ODS_FOCUS) != 0;
+        int desplazamiento = presionado ? 2 : 0;
+        Color fondoBoton = presionado ? Color(185, 0, 43) : Color(239, 0, 0);
+        Color bordeBoton = presionado ? Color(145, 0, 34) : Color(205, 0, 30);
+        Color blanco(255, 255, 255);
 
         Lienzo lienzo(hdc);
-        lienzo.limpiarRect(area, Color(255, 255, 255));
+        lienzo.limpiarRect(area, blanco);
 
-        RectanguloVisual fondo(0, 0, anchoActual - 1, altoActual - 1, fondoBoton, fondoBoton, altoActual);
-        TextoVisual texto(L"filtros", 0, 0, anchoActual, altoActual, 16, FW_NORMAL, textoBoton, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+        // La sombra, el color intenso y el mayor tamano destacan la accion.
+        RectanguloVisual sombra(
+            3,
+            4,
+            anchoActual - 6,
+            altoActual - 5,
+            Color(205, 205, 215),
+            Color(205, 205, 215),
+            altoActual
+        );
+        RectanguloVisual fondo(
+            1,
+            1 + desplazamiento,
+            anchoActual - 3,
+            altoActual - 6,
+            fondoBoton,
+            bordeBoton,
+            altoActual
+        );
 
+        sombra.dibujar(lienzo);
         fondo.dibujar(lienzo);
+
+        // Icono de embudo dibujado con GDI para identificar visualmente Filtros.
+        int tamanoIcono = altoActual / 3;
+        int iconoX = altoActual / 3;
+        int iconoY = (altoActual - tamanoIcono) / 2 + desplazamiento;
+        int centroIcono = iconoX + tamanoIcono / 2;
+        POINT embudo[] = {
+            { iconoX, iconoY },
+            { iconoX + tamanoIcono, iconoY },
+            { centroIcono + 3, iconoY + tamanoIcono / 2 },
+            { centroIcono + 3, iconoY + tamanoIcono },
+            { centroIcono - 3, iconoY + tamanoIcono - 3 },
+            { centroIcono - 3, iconoY + tamanoIcono / 2 }
+        };
+        lienzo.poligono(embudo, 6, blanco, blanco);
+
+        int inicioTexto = iconoX + tamanoIcono + 8;
+        int tamanoTexto = altoActual >= 40 ? 17 : 14;
+        TextoVisual texto(
+            L"FILTROS",
+            inicioTexto,
+            1 + desplazamiento,
+            anchoActual - inicioTexto - 8,
+            altoActual - 6,
+            tamanoTexto,
+            FW_BOLD,
+            blanco,
+            DT_CENTER | DT_VCENTER | DT_SINGLELINE
+        );
         texto.dibujar(lienzo);
+
+        // Conserva una indicacion visible para la navegacion con teclado.
+        if (enfocado) {
+            RECT areaFoco = { 7, 7, anchoActual - 7, altoActual - 10 };
+            DrawFocusRect(hdc, &areaFoco);
+        }
     }
 };
 
