@@ -1,5 +1,11 @@
 #include "RenderizadorConsola.h"
 
+// ============================================================================
+// ARCHIVO HISTORICO - NO FORMA PARTE DEL PROYECTO ACTUAL
+// Este archivo queda como evidencia de una version inicial del prototipo que se
+// probo en consola. La entrega actual utiliza la interfaz grafica Win32/GDI.
+// ============================================================================
+
 #include "Conversion.h"
 
 #include <iostream>

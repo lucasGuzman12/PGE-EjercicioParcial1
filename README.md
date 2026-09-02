@@ -59,7 +59,7 @@ y el repintado dinámico, no desarrollar un portal de empleos completo.
 | **Funciones de conversión** | Las coordenadas reales del mouse se convierten al sistema fijo de la maqueta. También se convierten dimensiones, posiciones y colores al formato utilizado por Win32. |
 
 Los cuatro puntos están señalados llamativamente en
-[`Aplicacion.h`](Aplicacion.h) con comentarios `PUNTO DE LA CONSIGNA`.
+[`Aplicacion.cpp`](Aplicacion.cpp) con comentarios `PUNTO DE LA CONSIGNA`.
 
 ## Flujo principal de eventos
 
@@ -95,10 +95,10 @@ flowchart TD
 ```text
 .
 ├── main.cpp             # Puntos de entrada de la aplicación
-├── Aplicacion.h         # Ventana, callback, mensajes, Paint y conversiones
-├── Componentes.h        # Página, buscador, ofertas y botón de filtros
-├── Filtros.h            # Estado, interacción y dibujo del panel de filtros
-├── Graficos.h           # Abstracciones de dibujo, fuentes, colores y escalado
+├── Aplicacion.h/.cpp    # Ventana, callback, mensajes, Paint y conversiones
+├── Componentes.h/.cpp   # Página, buscador, ofertas y botón de filtros
+├── Filtros.h/.cpp       # Estado, interacción y dibujo del panel de filtros
+├── Graficos.h/.cpp      # Abstracciones de dibujo, fuentes, colores y escalado
 ├── Constantes.h         # Dimensiones base e identificadores de Win32
 ├── Ejercicio Parcial.slnx
 └── Ejercicio Parcial.vcxproj
