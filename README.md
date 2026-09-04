@@ -8,6 +8,12 @@ El trabajo corresponde al ejercicio **“Análisis y Mejora de la Interfaz de
 Usuario en Software utilizando C++”** de la materia Programación Genérica y
 Eventos.
 
+## Integrantes
+
+- Bianconi Clara
+- Guzmán Domínguez Lucas Santiago
+- Roldan Tiago
+
 ## Objetivo
 
 El objetivo es mostrar cómo una interfaz puede responder dinámicamente a las
