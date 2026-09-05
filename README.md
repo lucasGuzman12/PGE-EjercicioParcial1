@@ -152,18 +152,6 @@ Visual Studio no reconoce el formato `.slnx`.
 - **Claridad de la documentación:** el código contiene comentarios específicos
   que identifican cada concepto técnico solicitado.
 
-## Documentación para la entrega académica
-
-Este README resume el proyecto, pero la consigna también solicita un informe en
-PDF. Para la entrega final se recomienda incluir:
-
-1. descripción del software y del problema de usabilidad;
-2. justificación de la solución propuesta;
-3. explicación de los cuatro conceptos técnicos;
-4. una captura de la pantalla principal;
-5. una captura del panel de filtros abierto;
-6. una captura con varias opciones seleccionadas.
-
 ## Estado
 
 El prototipo gráfico compila y permite abrir, utilizar y cerrar el panel de
